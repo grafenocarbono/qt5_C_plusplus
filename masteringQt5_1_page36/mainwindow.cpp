@@ -1,11 +1,11 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),
+    mTasks()
 {
     ui->setupUi(this);
     connect(ui->addTaskButton, &QPushButton::clicked, this,
@@ -19,4 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::addTask(){
     qDebug() << "User clicked";
+    Task* task = new Task("Untitled task");
+    mTasks.append(task);
+    ui->tasksLayout->addWidget(task);
 }
